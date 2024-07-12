@@ -27,10 +27,9 @@ class UserController extends Controller
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
-
         User::create($validatedData);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
 
     public function show(User $user)
@@ -56,13 +55,13 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }
 }
